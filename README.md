@@ -42,6 +42,11 @@ default: `undefined`
 
 ## Full example with options set
 
+Here's how to use this customized with extra css styles.
+
+### metalsmith config
+*Example*: Prepend an anchor with the class `myCustomHeadingsAnchorClass` on all headings, but within files that have the `fileMetaKeyHeadingsAllowed` property set.
+
 ```javascript
 var Metalsmith = require("metalsmith");
 var headingsidentifier = require("metalsmith-headingsidentifier");
@@ -56,6 +61,53 @@ Metalsmith(__dirname)
   // ...
 ```
 
+### css config
+*Example*: Style the links by using the `myCustomHeadingsAnchorClass`.
+
+```css
+
+.myCustomHeadingsAnchorClass {
+  height: 20px;
+  width: 20px;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  text-decoration: none;
+  height: 100%;
+  background: transparent;
+  color: #444;
+  vertical-align: middle;
+}
+.myCustomHeadingsAnchorClass:hover {
+  color: #444;
+}
+h1,h2,h3,h4,h5,h6 { 
+  position: relative; 
+}
+
+h1:hover .myCustomHeadingsAnchorClass span:before,
+h2:hover .myCustomHeadingsAnchorClass span:before,
+h3:hover .myCustomHeadingsAnchorClass span:before,
+h4:hover .myCustomHeadingsAnchorClass span:before,
+h5:hover .myCustomHeadingsAnchorClass span:before,
+h6:hover .myCustomHeadingsAnchorClass span:before {
+  content: "¶";
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+
+```
+
+### Example look
+![example picture](headingsidentifierSample.png)
 
 ## Problems?
 File an issue or fork 'n' fix and send a pull request.
