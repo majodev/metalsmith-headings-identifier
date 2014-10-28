@@ -1,4 +1,4 @@
-#metalsmith-headingsidentifier
+#metalsmith-headings-identifier
 
 > A Metalsmith plugin to add an id + anchor to all headings on a page. Ideal for permalinks.
 
@@ -10,14 +10,14 @@ As part the my note *"[Extracting libs from a node.js project: Publishing my met
 ## Installation
 
 ```bash
-npm install --save metalsmith-headingsidentifier
+npm install --save metalsmith-headings-identifier
 ```
 
 ## Usage
 
 ```javascript
 var Metalsmith = require("metalsmith");
-var headingsidentifier = require("metalsmith-headingsidentifier");
+var headingsidentifier = require("metalsmith-headings-identifier");
 
 
 Metalsmith(__dirname)
@@ -49,7 +49,7 @@ Here's how to use this customized with extra css styles.
 
 ```javascript
 var Metalsmith = require("metalsmith");
-var headingsidentifier = require("metalsmith-headingsidentifier");
+var headingsidentifier = require("metalsmith-headings-identifier");
 
 
 Metalsmith(__dirname)
