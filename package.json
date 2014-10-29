@@ -1,11 +1,14 @@
 {
   "name": "metalsmith-headings-identifier",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Metalsmith plugin to add an id + anchor to all headings on a page",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/majodev/metalsmith-headings-identifier.git"
+  },
+  "scripts": {
+    "test": "mocha ./spec/index.js"
   },
   "keywords": [
     "metalsmith",
@@ -26,5 +29,10 @@
   "dependencies": {
     "cheerio": "^0.17.0",
     "lodash": "^2.4.1"
+  },
+  "devDependencies": {
+    "assert-dir-equal": "^1.0.1",
+    "chai": "~1.8.0",
+    "metalsmith": "^1.0.1"
   }
 }

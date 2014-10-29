@@ -23,20 +23,11 @@ module.exports = plugin;
 
 function plugin(options) {
 
-  var formatLinkString = '<a class="heading-anchor" href="#%s"><span></span></a>';
-  var limitExecution = false;
-  var allowField = "";
+  var opts = options || {};
 
-
-  if (_.isUndefined(options) === false) {
-    if (_.isUndefined(options.allow) === false) {
-      limitExecution = true;
-      allowField = options.allow;
-    }
-    if (_.isUndefined(options.linkTemplate) === false) {
-      formatLinkString = options.linkTemplate;
-    }
-  }
+  // set default options or args
+  opts.allow = opts.allow || false;
+  opts.linkTemplate = opts.linkTemplate || '<a class="heading-anchor" href="#%s"><span></span></a>';
 
   return function(files, metalsmith, done) {
     setImmediate(done);
@@ -44,28 +35,39 @@ function plugin(options) {
     Object.keys(files).forEach(function(file) {
       if (!html(file)) return;
 
-      if (limitExecution) {
-        if (files[file][allowField] !== true) {
+      // should we check if headingsIdentifier should be run based on file metakey?
+      if (opts.allow !== false) {
+        // metakey provided in options, check if it's false, abort!
+        if (files[file][opts.allow] !== true) {
           return;
         }
       }
 
-      var idcache = {}; // to handle douple ids
+      var idcache = {}; // store to handle duplicate ids
       var data = files[file];
+
+      // load contents with cheerio to parse html nodes
       var $ = cheerio.load(data.contents.toString());
 
       $("h1,h2,h3,h4,h5,h6").each(function(index, element) {
+
+        // for each heading, check its id (and set if undefined) then append the anchor
+
         var id = $(element).attr("id");
         if (!id) {
           id = ($(element).text()).replace(/&.*?;/g, '').replace(/\s+/g, '-').replace(/[^\w\-]/g, '').toLowerCase();
+          
           if (idcache[id]) {
+            // duplicate id, add index to make it unique
             id = id + '-' + index;
           }
-          $(element).attr("id", id);
-          idcache[id] = 1;
-        } else {
-        }
-        $(element).prepend(util.format(formatLinkString, id));
+
+          $(element).attr("id", id); // set the id
+          idcache[id] = 1; // remember id in store
+        } else {}
+
+        // append link
+        $(element).prepend(util.format(opts.linkTemplate, id));
       });
 
       data.contents = $.html();
