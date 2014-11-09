@@ -55,7 +55,7 @@ var headingsidentifier = require("metalsmith-headings-identifier");
 Metalsmith(__dirname)
   // html files are available (e.g. state when markdown was compiled)
   .use(headingsidentifier({
-    linkTemplate: "<a class="myCustomHeadingsAnchorClass" href="#%s"><span></span></a>",
+    linkTemplate: "<a class='myCustomHeadingsAnchorClass' href='#%s'><span></span></a>",
     allow: "fileMetaKeyHeadingsAllowed"
   }))
   // ...
