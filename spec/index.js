@@ -46,4 +46,15 @@ describe('metalsmith-data-markdown', function() {
         done();
       });
   });
+  it('custom classes can be added to headings', function(done) {
+    Metalsmith('spec/fixture')
+      .use(headingsIdentifier({
+        headingClass: 'headingClass'
+      }))
+      .build(function(err) {
+        if (err) return done(err);
+        equal('spec/fixture/expected/headingClasses.html', 'spec/fixture/build/headingClasses.html');
+        done();
+      })
+  })
 });
