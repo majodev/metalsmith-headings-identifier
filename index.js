@@ -49,7 +49,10 @@ function plugin(options) {
       // load contents with cheerio to parse html nodes
       var $ = cheerio.load(data.contents.toString());
 
-      $("h1,h2,h3,h4,h5,h6").each(function(index, element) {
+      // Set context if opts.selector is provided
+      var context = opts.selector ? $(opts.selector) : undefined;
+
+      $("h1,h2,h3,h4,h5,h6", context).each(function(index, element) {
 
         // for each heading, check its id (and set if undefined) then append the anchor
 
