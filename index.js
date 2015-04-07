@@ -28,6 +28,7 @@ function plugin(options) {
   // set default options or args
   opts.allow = opts.allow || false;
   opts.linkTemplate = opts.linkTemplate || '<a class="heading-anchor" href="#%s"><span></span></a>';
+  opts.headingClass = opts.headingClass || ''
 
   return function(files, metalsmith, done) {
     setImmediate(done);
@@ -65,6 +66,9 @@ function plugin(options) {
           $(element).attr("id", id); // set the id
           idcache[id] = 1; // remember id in store
         } else {}
+
+        // add heading classes
+        $(element).addClass(opts.headingClass)
 
         // append link
         $(element).prepend(util.format(opts.linkTemplate, id));

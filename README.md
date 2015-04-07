@@ -40,6 +40,10 @@ default: `<a class="heading-anchor" href="#%s"><span></span></a>`
 `String`: A simple way to limit this plugin to only run on files that have the provided metakey set.  
 default: `undefined`
 
+### `headingClass` (optional)
+`String`: A class that is added to the heading tag.  
+default: `undefined`
+
 ## Full example with options set
 
 Here's how to use this customized with extra css styles.
