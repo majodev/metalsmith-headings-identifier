@@ -5,7 +5,7 @@ var equal = require('assert-dir-equal');
 
 var headingsIdentifier = require('..');
 
-describe('metalsmith-data-markdown', function() {
+describe('metalsmith-headings-identifier', function() {
   it('preexisting ids should remain untouched', function(done) {
     Metalsmith('spec/fixture')
       .use(headingsIdentifier())
@@ -35,7 +35,7 @@ describe('metalsmith-data-markdown', function() {
         done();
       });
   });
-  it('allow metafield can be used specify key that disables auto headings', function(done) {
+  it('allow metafield can be used to specify key that disables auto headings', function(done) {
     Metalsmith('spec/fixture')
       .use(headingsIdentifier({
         allow: 'appendHeadingAuto'
