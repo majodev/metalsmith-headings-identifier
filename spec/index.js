@@ -56,5 +56,16 @@ describe('metalsmith-headings-identifier', function() {
         equal('spec/fixture/expected/headingClasses.html', 'spec/fixture/build/headingClasses.html');
         done();
       })
-  })
+  });
+  it('allows scoping heading links according to a selector', function(done) {
+    Metalsmith('spec/fixture')
+      .use(headingsIdentifier({
+        selector: '.to-link'
+      }))
+      .build(function(err) {
+        if (err) return done(err);
+        equal('spec/fixture/expected/selector.html', 'spec/fixture/build/selector.html');
+        done();
+      });
+  });
 });

@@ -44,6 +44,10 @@ default: `undefined`
 `String`: A class that is added to the heading tag.  
 default: `undefined`
 
+### `selector` (optional)
+`String`: Scope heading links according to a selector.  
+default: `undefined`
+
 ## Full example with options set
 
 Here's how to use this customized with extra css styles.
