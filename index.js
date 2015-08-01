@@ -77,7 +77,7 @@ function plugin(options) {
         $(element).prepend(util.format(opts.linkTemplate, id));
       });
 
-      data.contents = $.html();
+      data.contents = new Buffer($.html()); // fixes #4 - we always need to use a buffer
       files[file] = data;
     });
   };

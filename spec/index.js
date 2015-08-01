@@ -1,3 +1,5 @@
+require("harmonize")(); // metalsmith 2.x use harmony features, enable them programatically.
+
 var path = require('path');
 var expect = require('chai').expect;
 var Metalsmith = require('metalsmith');
