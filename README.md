@@ -48,6 +48,10 @@ default: `undefined`
 `String`: Scope heading links according to a selector.  
 default: `undefined`
 
+### `position` (optional)
+`String`: Add the `linkTemplate` left or right from the headline text.
+default: `left`
+
 ## Full example with options set
 
 Here's how to use this customized with extra css styles.

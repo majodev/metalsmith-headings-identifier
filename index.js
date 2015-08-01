@@ -28,7 +28,8 @@ function plugin(options) {
   // set default options or args
   opts.allow = opts.allow || false;
   opts.linkTemplate = opts.linkTemplate || '<a class="heading-anchor" href="#%s"><span></span></a>';
-  opts.headingClass = opts.headingClass || ''
+  opts.headingClass = opts.headingClass || '';
+  opts.position = opts.position || 'left';
 
   return function(files, metalsmith, done) {
     setImmediate(done);
@@ -74,7 +75,11 @@ function plugin(options) {
         $(element).addClass(opts.headingClass)
 
         // append link
-        $(element).prepend(util.format(opts.linkTemplate, id));
+        if (opts.position === 'left') {
+          $(element).prepend(util.format(opts.linkTemplate, id));
+        } else {
+          $(element).append(util.format(opts.linkTemplate, id));
+        }
       });
 
       data.contents = new Buffer($.html()); // fixes #4 - we always need to use a buffer
