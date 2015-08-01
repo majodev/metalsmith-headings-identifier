@@ -70,4 +70,16 @@ describe('metalsmith-headings-identifier', function() {
         done();
       });
   });
+  it('allows custom positioning of the anchor', function(done) {
+    Metalsmith('spec/fixture')
+      .use(headingsIdentifier({
+        headingClass: 'headingClass',
+        position: 'right'
+      }))
+      .build(function(err) {
+        if (err) return done(err);
+        equal('spec/fixture/expected/positioning.html', 'spec/fixture/build/positioning.html');
+        done();
+      });
+  });
 });
