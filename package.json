@@ -34,6 +34,7 @@
     "assert-dir-equal": "^1.0.1",
     "chai": "~1.8.0",
     "harmonize": "^1.4.4",
-    "metalsmith": "^1.7.0"
+    "metalsmith": "^1.7.0",
+    "mocha": "~2.3.3"
   }
 }
