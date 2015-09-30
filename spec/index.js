@@ -82,4 +82,15 @@ describe('metalsmith-headings-identifier', function() {
         done();
       });
   });
+  it('works from the CLI', function(done) {
+    // The CLI sets an expectation that `"lib": true` works correctly, with
+    // all defaults.
+    Metalsmith('spec/fixture')
+      .use(headingsIdentifier(true))
+      .build(function(err) {
+        if (err) return done(err);
+        equal('spec/fixture/expected/headingWithoutID.html', 'spec/fixture/build/headingWithoutID.html');
+        done();
+      });
+  });
 });

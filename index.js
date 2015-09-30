@@ -23,7 +23,7 @@ module.exports = plugin;
 
 function plugin(options) {
 
-  var opts = options || {};
+  var opts = (typeof options === 'object') && options || {};
 
   // set default options or args
   opts.allow = opts.allow || false;
