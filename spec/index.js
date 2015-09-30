@@ -93,4 +93,13 @@ describe('metalsmith-headings-identifier', function() {
         done();
       });
   });
+  it('should handle duplicates (and forcefully overwrite existing duplicate ids)', function(done) {
+    Metalsmith('spec/fixture')
+      .use(headingsIdentifier())
+      .build(function(err) {
+        if (err) return done(err);
+        equal('spec/fixture/expected/duplicateHeadings.html', 'spec/fixture/build/duplicateHeadings.html');
+        done();
+      });
+  });
 });

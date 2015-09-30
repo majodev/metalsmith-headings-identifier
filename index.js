@@ -57,19 +57,20 @@ function plugin(options) {
       $("h1,h2,h3,h4,h5,h6", context).each(function(index, element) {
 
         // for each heading, check its id (and set if undefined) then append the anchor
-
         var id = $(element).attr("id");
+        
         if (!id) {
+          // generate a unique one...
           id = ($(element).text()).replace(/&.*?;/g, '').replace(/\s+/g, '-').replace(/[^\w\-]/g, '').toLowerCase();
-          
-          if (idcache[id]) {
-            // duplicate id, add index to make it unique
-            id = id + '-' + index;
-          }
+        }
 
-          $(element).attr("id", id); // set the id
-          idcache[id] = 1; // remember id in store
-        } else {}
+        if (idcache[id]) {
+          // duplicate id, add index to make it unique
+          id = id + '-' + index;
+        }
+
+        $(element).attr("id", id); // set the id
+        idcache[id] = true; // remember id in store
 
         // add heading classes
         $(element).addClass(opts.headingClass)
