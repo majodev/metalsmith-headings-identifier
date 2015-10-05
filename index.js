@@ -64,13 +64,18 @@ function plugin(options) {
           id = ($(element).text()).replace(/&.*?;/g, '').replace(/\s+/g, '-').replace(/[^\w\-]/g, '').toLowerCase();
         }
 
-        if (idcache[id]) {
+        if (_.isNumber(idcache[id])) {
+          // increment index for this id
+          idcache[id] += 1;
+
           // duplicate id, add index to make it unique
-          id = id + '-' + index;
-        }
+          id = id + '-' + idcache[id];
+        } 
+          
+        idcache[id] = 0; // remember id in store (duplicates must also be saved.)
+        
 
         $(element).attr("id", id); // set the id
-        idcache[id] = true; // remember id in store
 
         // add heading classes
         $(element).addClass(opts.headingClass)

@@ -102,4 +102,13 @@ describe('metalsmith-headings-identifier', function() {
         done();
       });
   });
+  it('should scope duplicates properly based on first occurance', function(done) {
+    Metalsmith('spec/fixture')
+      .use(headingsIdentifier())
+      .build(function(err) {
+        if (err) return done(err);
+        equal('spec/fixture/expected/scopedNonDuplicateIds.html', 'spec/fixture/build/scopedNonDuplicateIds.html');
+        done();
+      });
+  });
 });

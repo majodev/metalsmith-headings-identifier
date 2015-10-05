@@ -1,6 +1,6 @@
 {
   "name": "metalsmith-headings-identifier",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A Metalsmith plugin to add an id + anchor to all headings on a page",
   "main": "index.js",
   "repository": {
