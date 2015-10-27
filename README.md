@@ -45,7 +45,13 @@ default: `undefined`
 default: `undefined`
 
 ### `selector` (optional)
-`String`: Scope heading links according to a selector.  
+`String`: Target elements using the following [selector](https://github.com/cheeriojs/cheerio#-selector-context-root-).  
+default: `h1,h2,h3,h4,h5,h6`
+
+**Attention (Breaking Change):** If you were using the `selector` option with a version **<0.0.10** of this plugin, you need to change the key from `selector` to `context`.
+
+### `context` (optional)
+`String`: Scope matched elements (via the *selector*) according to a [context](https://github.com/cheeriojs/cheerio#-selector-context-root-) selector.  
 default: `undefined`
 
 ### `position` (optional)
