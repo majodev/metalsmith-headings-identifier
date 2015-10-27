@@ -44,9 +44,13 @@ default: `undefined`
 `String`: A class that is added to the heading tag.  
 default: `undefined`
 
-### `selector` (optional)
-`String`: Scope heading links according to a selector.  
+### `context` (optional)
+`String`: Scope heading links according to a context.  
 default: `undefined`
+
+### `selector` (optional)
+`String`: Target heading links according to a selector.  
+default: `h1,h2,h3,h4,h5,h6`
 
 ### `position` (optional)
 `String`: Add the `linkTemplate` left or right from the headline text.
