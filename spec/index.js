@@ -59,10 +59,21 @@ describe('metalsmith-headings-identifier', function() {
         done();
       })
   });
+  it('allows scoping heading links according to a context', function(done) {
+    Metalsmith('spec/fixture')
+      .use(headingsIdentifier({
+        context: '.to-link'
+      }))
+      .build(function(err) {
+        if (err) return done(err);
+        equal('spec/fixture/expected/context.html', 'spec/fixture/build/context.html');
+        done();
+      });
+  });
   it('allows scoping heading links according to a selector', function(done) {
     Metalsmith('spec/fixture')
       .use(headingsIdentifier({
-        selector: '.to-link'
+        selector: 'h2'
       }))
       .build(function(err) {
         if (err) return done(err);
