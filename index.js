@@ -51,10 +51,13 @@ function plugin(options) {
       // load contents with cheerio to parse html nodes
       var $ = cheerio.load(data.contents.toString());
 
-      // Set context if opts.selector is provided
-      var context = opts.selector ? $(opts.selector) : undefined;
+      // Set context if opts.context is provided
+      var context = opts.context ? $(opts.context) : undefined;
 
-      $("h1,h2,h3,h4,h5,h6", context).each(function(index, element) {
+      // Set selector if opts.selector is provided
+      var selector = opts.selector || "h1,h2,h3,h4,h5,h6";
+
+      $(selector, context).each(function(index, element) {
 
         // for each heading, check its id (and set if undefined) then append the anchor
         var id = $(element).attr("id");
