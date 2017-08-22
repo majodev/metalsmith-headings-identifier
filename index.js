@@ -30,7 +30,11 @@ function plugin(options) {
   opts.linkTemplate = opts.linkTemplate || '<a class="heading-anchor" href="#%s"><span></span></a>';
   opts.headingClass = opts.headingClass || '';
   opts.position = opts.position || 'left';
-  opts.includeIds = opts.includeIds || true;
+
+  // can't use || to set options if default is true
+  if (opts.includeIds == undefined){
+      opts.includeIds = true
+  }
 
   return function(files, metalsmith, done) {
     setImmediate(done);
@@ -83,7 +87,7 @@ function plugin(options) {
         // since we're already appending an anchor tag - they conflict.
         if (opts.includeIds){
           $(element).attr("id", id); // set the id 
-        }
+        } 
       
         // add heading classes
         $(element).addClass(opts.headingClass)
