@@ -30,6 +30,7 @@ function plugin(options) {
   opts.linkTemplate = opts.linkTemplate || '<a class="heading-anchor" href="#%s"><span></span></a>';
   opts.headingClass = opts.headingClass || '';
   opts.position = opts.position || 'left';
+  opts.includeIds = opts.includeIds || true;
 
   return function(files, metalsmith, done) {
     setImmediate(done);
@@ -78,8 +79,12 @@ function plugin(options) {
         idcache[id] = 0; // remember id in store (duplicates must also be saved.)
         
 
-        $(element).attr("id", id); // set the id
-
+        // Users may not want an id appended to the heading
+        // since we're already appending an anchor tag - they conflict.
+        if (opts.includeIds){
+          $(element).attr("id", id); // set the id 
+        }
+      
         // add heading classes
         $(element).addClass(opts.headingClass)
 
