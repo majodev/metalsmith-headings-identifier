@@ -31,8 +31,8 @@ function plugin(options) {
   opts.headingClass = opts.headingClass || '';
   opts.position = opts.position || 'left';
 
-  // can't use || to set options if default is true
-  if (opts.includeIds == undefined){
+  // can't use '||' to set options if default is true
+  if (opts.includeIds === undefined){
       opts.includeIds = true
   }
 
