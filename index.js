@@ -31,6 +31,11 @@ function plugin(options) {
   opts.headingClass = opts.headingClass || '';
   opts.position = opts.position || 'left';
 
+  // can't use '||' to set options if default is true
+  if (opts.includeIds === undefined){
+      opts.includeIds = true
+  }
+
   return function(files, metalsmith, done) {
     setImmediate(done);
 
@@ -78,8 +83,12 @@ function plugin(options) {
         idcache[id] = 0; // remember id in store (duplicates must also be saved.)
         
 
-        $(element).attr("id", id); // set the id
-
+        // Users may not want an id appended to the heading
+        // since we're already appending an anchor tag - they conflict.
+        if (opts.includeIds){
+          $(element).attr("id", id); // set the id 
+        } 
+      
         // add heading classes
         $(element).addClass(opts.headingClass)
 

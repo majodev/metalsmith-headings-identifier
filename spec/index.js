@@ -26,6 +26,18 @@ describe('metalsmith-headings-identifier', function() {
         done();
       });
   });
+
+  it('ids are not auto appended if includeIds option is set to false', function(done){
+    Metalsmith('spec/fixture')
+    .use(headingsIdentifier({
+      includeIds: false
+    }))
+    .build(function(err){
+        if (err) return done(err);
+        equal('spec/fixture/expected/headingNoIDs.html', 'spec/fixture/build/headingNoIDs.html');
+        done();
+    })
+  });
   it('anchor template can be changed', function(done) {
     Metalsmith('spec/fixture')
       .use(headingsIdentifier({
